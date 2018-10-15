@@ -4,8 +4,8 @@ using namespace std;
 struct work
 {
     int workID;
-    int s; //to hold staring time
-    int f; //to hold finishing time
+    int staring_time; //to hold staring time
+    int finishing_time; //to hold finishing time
 };
 
 /*
@@ -27,7 +27,7 @@ vector<work> select_activity( vector<work> activities)
 
 
     for(int i = 1; i < activities.size(); i++){
-        if( activities[i].s > activities[k].f ){
+        if( activities[i].staring_time > activities[k].finishing_time ){
             selected_activities.push_back(activities[i]);
             k = i;
         }
@@ -40,7 +40,7 @@ vector<work> select_activity( vector<work> activities)
 
 bool cmp(work a, work b)
 {
-    return (a.f < b.f);
+    return (a.finishing_time < b.finishing_time);
 }
 
 int main()
@@ -49,13 +49,13 @@ int main()
     freopen("Activity_Selection01.txt" , "r" , stdin );
     vector<work> activity;
 
-    int s,f,id;
+    int staring_time,finishing_time,id;
     work x;
 
-    while( scanf("%d%d%d",&id,&s,&f) != EOF ){
+    while( scanf("%d%d%d",&id,&staring_time,&finishing_time) != EOF ){
         x.workID = id;
-        x.s = s;
-        x.f = f;
+        x.staring_time = staring_time;
+        x.finishing_time = finishing_time;
         activity.push_back(x);
     }
 
@@ -66,7 +66,7 @@ int main()
     cout << "WOrkID : " << " Starting Time : " << " Ending Time : " << " \n";
 
     for(int i = 0; i < activity1.size(); i++){
-        cout << setw (9) << activity1[i].workID << setw (19) << activity1[i].s << setw (19) << activity1[i].f << " \n";
+        cout << setw (9) << activity1[i].workID << setw (19) << activity1[i].staring_time << setw (19) << activity1[i].finishing_time << " \n";
     }
 
     return 0;
